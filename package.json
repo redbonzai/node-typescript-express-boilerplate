@@ -4,14 +4,16 @@
   "description": "'test application'",
   "main": "server.ts",
   "scripts": {
-    "start-server": "tsc && node build/server.js",
+    "start-server": "tsc && node index.ts",
     "start": "nodemon -e ts -w ./ -x npm run start-server"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "dotenv": "^8.0.0",
     "express": "^4.17.1",
+    "morgan": "^1.9.1",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
@@ -19,6 +21,7 @@
     "@babel/preset-env": "^7.4.5",
     "@babel/register": "^7.4.4",
     "@types/express": "^4.17.0",
+    "@types/morgan": "^1.7.35",
     "@types/uuid": "^3.4.4"
   }
 }
