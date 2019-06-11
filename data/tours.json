@@ -16,5 +16,14 @@
         "tourDescription" : "Get to know New York City on a 4- or 8-hour walking tour with a private guide",
         "price" : 190,
         "currency" : "USD"
+    },
+    {
+        "id": "id-2",
+        "location": "mexico",
+        "tourTitle": "Tour of torta central",
+        "tourCategory": "all the tortas you can eat in 2 hours",
+        "tourDescription": "The best tortas in the world are from mexico",
+        "price": 150,
+        "currency": "USD"
     }
 ]
