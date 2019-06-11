@@ -10,5 +10,11 @@
         "reviewTitle" : "Paris is beautiful in the evening",
         "reviewLongText" : "This was a nice tour! However, the Audio Guide didn't work.",
         "stars" : 4
+    },
+    {
+        "tourID" : "id-2",
+        "reviewTitle" : "The best stuff-your-face-event ever",
+        "reviewLongText" : "The best tortas in the world",
+        "stars" : 4
     }
 ]
