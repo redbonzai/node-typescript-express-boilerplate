@@ -2,8 +2,8 @@ import express from 'express';
 const app = express();
 
 import morgan from 'morgan'
-
 import * as bodyparser from 'body-parser'
+import path from 'path';
 
 const jsonParser = bodyparser.json();
 const urlEncodedParser = bodyparser.urlencoded({
@@ -31,7 +31,8 @@ const logger = morgan('dev')
 // // it could be limited to a single route by adding a route as the first parameter.
  app.use(logger);
 
-
+// middleware to get static files: images, etc.
+app.use('/static', express.static(path.resolve('./', 'public', 'img')));
 
 app.get("/", (req, res, next) => {
     res.send('response from the base route. ');
