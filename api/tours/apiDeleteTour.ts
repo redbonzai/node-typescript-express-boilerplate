@@ -1,3 +1,4 @@
+import { PublicInfo, APIError } from './../../models/shared/messages';
 import { DataStore } from './../../data/data';
 import { RequestHandler } from 'express';
 export const apiDeleteTour: RequestHandler = (req, res, next) => {
@@ -8,14 +9,9 @@ export const apiDeleteTour: RequestHandler = (req, res, next) => {
 
     if (tourIndex > -1) {
         DataStore.tours.splice(tourIndex, 1);
-        res.json({
-            "status": "success",
-            "message": "Item successfully removed"
-        })
-    } else {
-        res.json({
-            "status": "error",
-            "message": "Item not removed"
-        })
+        res.json(new PublicInfo('Tour successfully removed', 200))
+    } else {        
+        next(new APIError('Validation Error', 'Tour not found', 400));
+        
     }
 }
