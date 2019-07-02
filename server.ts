@@ -1,3 +1,4 @@
+import { APIError } from './models/shared/messages';
 import express from 'express';
 const app = express();
 
@@ -18,6 +19,7 @@ import { apiUpdateTour } from './api/tours/apiUpdateTour';
 import { apiUploadImage } from './api/tours/apiUploadImage';
 
 import { CustomRequestHandler } from './models/express';
+import { apiErrorHandler } from './api/general/errorHandling';
 const logger = morgan('dev')
 
 // const authenticator: CustomRequestHandler = (req, res, next) => {
@@ -31,6 +33,16 @@ const logger = morgan('dev')
 // // the logger is loaded in every request handler. 
 // // it could be limited to a single route by adding a route as the first parameter.
 app.use(logger);
+
+app.use((req, res, next) => {
+    if (req.accepts('application/json')) {
+        next();
+    } else {
+        next(new APIError('Content Type not supported', 'This API supports application/json only', 400))
+    }
+})
+
+app.get('/headers', (req, res, next) => res.json(req.headers))
 
 // middleware to get static files: images, etc.
 app.use('/static', express.static(path.resolve('./', 'public', 'img')));
@@ -50,6 +62,8 @@ app.delete('/tours/:id', apiDeleteTour);
 app.patch('tours/:id', jsonParser, apiUpdateTour);
 
 app.post('/tours/:id/:img', apiUploadImage);
+
+app.use(apiErrorHandler);
 
 app.listen(process.env.PORT || 4200, () => {
     console.log('Server started ...');   
